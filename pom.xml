@@ -15,6 +15,12 @@
         <main.class>MainKt</main.class>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- Sonar -->
+        <!-- The destination file for the code coverage report has to be set to the same value
+         in the parent pom and in each module pom. Then JaCoCo will add up information in
+         the same report, so that, it will give the cross-module code coverage. -->
+        <sonar.jacoco.reportPaths>${PWD}/./target/jacoco.exec</sonar.jacoco.reportPaths>
+        <sonar.groovy.binaries>target/classes</sonar.groovy.binaries>
     </properties>
 
     <dependencies>
@@ -84,6 +90,12 @@
                 <configuration>
                     <mainClass>${main.class}</mainClass>
                 </configuration>
+            </plugin>
+                 
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.6.0.1398</version>
             </plugin>
 
         </plugins>
